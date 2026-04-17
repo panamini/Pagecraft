@@ -6,7 +6,7 @@ A reference project that merges the **twoweeks wiki operating model** with the *
 
 This package is built from two source systems:
 
-- **twoweeks**: strong at durable knowledge architecture, ingest/lint/save-output workflows, index/log discipline, and retrieval order
+- **twoweeks-wiki**: strong at durable knowledge architecture, ingest/lint/save-output workflows, index/log discipline, and retrieval order
 - **forrestchang/andrej-karpathy-skills**: strong at behavioral execution — think before coding, simplicity first, surgical changes, and goal-driven verification
 
 The hybrid keeps the twoweeks control plane and adds the Karpathy behavior shim.
