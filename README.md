@@ -1,4 +1,4 @@
-# twoweeks-karpathy-hybrid
+# Pagecraft
 
 A reference project that merges the **twoweeks wiki operating model** with the **Karpathy execution layer**.
 
