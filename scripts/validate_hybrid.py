@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 required_paths = [
     ROOT / "README.md",
+    ROOT / "AGENTS.md",
     ROOT / "WIKI_SCHEMA.md",
     ROOT / "CLAUDE.md",
     ROOT / "EXAMPLES.md",

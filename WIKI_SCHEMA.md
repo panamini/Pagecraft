@@ -10,6 +10,7 @@ Use `CLAUDE.md` for write-time behavior, mutation rules, and execution disciplin
 
 A valid hybrid vault has:
 
+- `wiki/hot.md`
 - `wiki/index.md`
 - `wiki/log.md`
 - `wiki/overview.md`
@@ -29,10 +30,11 @@ Optional:
 
 1. `WIKI_SCHEMA.md` if present
 2. `CLAUDE.md` if present
-3. `wiki/overview.md`
-4. `wiki/index.md`
-5. recent entries from `wiki/log.md`
-6. inspect `rawinput/` when ingest, lint, or repo-health work is relevant
+3. `wiki/hot.md` if present
+4. `wiki/overview.md`
+5. `wiki/index.md`
+6. recent entries from `wiki/log.md`
+7. inspect `rawinput/` when ingest, lint, or repo-health work is relevant
 
 ## Write rule
 
@@ -42,6 +44,7 @@ Optional:
 
 ## System files
 
+- `wiki/hot.md` — short active memory cache for LLM retrieval; non-canonical and overwrite-only
 - `wiki/index.md` — catalog of active and planned pages
 - `wiki/log.md` — chronological mutation log
 - `wiki/overview.md` — current project summary
@@ -82,6 +85,7 @@ Optional:
 
 ## Retrieval priority
 
+0. `wiki/hot.md` for active context and candidate canonical pages
 1. Durable pages with `status: current`
 2. Durable pages with `status: planned` when the question is future-oriented
 3. Source pages for corroboration or newly ingested details not yet merged
