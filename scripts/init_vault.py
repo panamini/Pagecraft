@@ -57,6 +57,7 @@ def init_vault(target: Path, with_sample: bool) -> None:
     target.mkdir(parents=True, exist_ok=True)
 
     copy_file(ROOT / "WIKI_SCHEMA.md", target / "WIKI_SCHEMA.md")
+    copy_file(ROOT / "llms.txt", target / "llms.txt")
     copy_file(ROOT / "CLAUDE.md", target / "CLAUDE.md")
     copy_file(ROOT / "AGENTS.md", target / "AGENTS.md")
     copy_file(
