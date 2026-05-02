@@ -8,9 +8,11 @@ ROOT = Path(__file__).resolve().parent.parent
 
 required_paths = [
     ROOT / "README.md",
+    ROOT / "AGENTS.md",
     ROOT / "WIKI_SCHEMA.md",
     ROOT / "CLAUDE.md",
     ROOT / "EXAMPLES.md",
+    ROOT / "scripts" / "init_vault.py",
     ROOT / "skills" / "ingest-wiki" / "SKILL.md",
     ROOT / ".claude-plugin" / "plugin.json",
     ROOT / ".claude-plugin" / "marketplace.json",

@@ -2,11 +2,13 @@
 
 ## CLAUDE.md
 - Added a **Behavioral execution overlay** section.
+- Added active-memory retrieval through `wiki/hot.md`.
 - Added explicit preflight fields: Goal, Assumptions, Smallest safe change, Verification.
 - Added mode-specific verification contracts.
-- Preserved the original category router, frontmatter contract, retrieval order, and maintenance rules.
+- Preserved the original category router, frontmatter contract, archive model, and index/log discipline.
 
 ## skills/ingest-wiki/SKILL.md
+- Added `wiki/hot.md` as the first lightweight memory read.
 - Added mandatory preflight before non-trivial writes.
 - Added behavior constraints against overcomplication and drive-by cleanup.
 - Added mode-specific verification for ingest, direct-update, lint, and save-output.

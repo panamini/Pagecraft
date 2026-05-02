@@ -139,3 +139,23 @@ For each finding, propose the minimum safe fix, such as:
 - append a save entry to `wiki/log.md`
 
 That preserves the analysis without replacing canonical knowledge.
+
+---
+
+## 7. Use Hot Cache Before Broad Retrieval
+
+### User request
+"What is the canonical truth for parser output?"
+
+### Bad behavior
+- reads the whole vault
+- scans every source page that mentions parser output
+- answers from an old output snapshot
+
+### Better hybrid behavior
+- read `wiki/hot.md` first
+- use the Retrieval Map in `wiki/index.md` if `hot.md` is not enough
+- open only the targeted current durable pages
+- stop widening the read set once the canonical owner is clear
+
+`wiki/hot.md` is a cache. It stays under 500 words and never overrides current durable pages.

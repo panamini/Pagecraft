@@ -112,6 +112,7 @@ hybrid-vault/
 │   ├── plugin.json
 │   └── marketplace.json
 └── wiki/
+    ├── hot.md
     ├── index.md
     ├── log.md
     ├── overview.md
@@ -258,8 +259,29 @@ Do not pad pages with quotes, screenshots, or history unless they change decisio
 
 ## Retrieval order
 
+### Active memory gateway
+
+`wiki/hot.md` is the low-cost active memory cache for LLM sessions.
+It is non-canonical, overwrite-only, and exists to make wiki retrieval cheap enough to use by default.
+
+Read `wiki/hot.md` first when a request needs project context.
+
+Use these query modes:
+
+| Mode | Reads | Use when |
+| --- | --- | --- |
+| `quick` | `wiki/hot.md` and the retrieval map / top section of `wiki/index.md` | simple lookup, active context, deciding which page owns a topic |
+| `standard` | `wiki/hot.md`, `wiki/index.md`, and 1-3 targeted pages | normal product, tech, design, or wiki questions |
+| `deep` | `wiki/hot.md`, `wiki/index.md`, recent `wiki/log.md`, and every relevant page | audits, synthesis, duplicate review, migration planning |
+
+Keep `wiki/hot.md` under 500 words. It is a cache, not a journal.
+If `wiki/hot.md` answers the question or names the correct canonical page, do not widen the read set.
+If it is stale or missing, fall back to `wiki/overview.md` and `wiki/index.md`.
+Never treat `wiki/hot.md` as durable truth when it conflicts with a current durable page.
+
 For normal questions, read in this order:
 
+0. `wiki/hot.md` for active context and likely canonical owners
 1. durable pages with `status: current`
 2. durable pages with `status: planned` only when the question is about future state
 3. relevant source pages for evidence or newly ingested details not yet merged
@@ -319,6 +341,7 @@ Verification checklist:
 - raw file moved to `raw/` or `raw/assets/`
 - `wiki/index.md` updated
 - `wiki/log.md` updated
+- `wiki/hot.md` updated
 - `wiki/overview.md` or `wiki/timeline.md` updated only if project state changed
 
 ### Direct update
@@ -329,6 +352,7 @@ Verification checklist:
 - no adjacent unrelated cleanup
 - links repaired if paths changed
 - `wiki/index.md` and `wiki/log.md` updated when persistent state changed
+- `wiki/hot.md` updated when active context changed
 
 ### Lint
 
@@ -348,13 +372,15 @@ Verification checklist:
 - `related` links added when useful
 - `wiki/index.md` updated
 - `wiki/log.md` appended with a save entry
+- `wiki/hot.md` updated if the output should shape near-term retrieval
 
 ## Maintenance rules
 
 - `raw/` is immutable.
 - `rawinput/` should be empty after ingest.
-- always update `wiki/index.md` and `wiki/log.md` after persistent changes.
+- always update `wiki/index.md`, `wiki/log.md`, and `wiki/hot.md` after persistent wiki changes.
 - prefer updating or superseding over duplicating.
+- treat `wiki/hot.md` as an access cache, not as a second canonical truth.
 - keep `overview.md` high level.
 - keep `timeline.md` for project history, not general note accumulation.
 - use Obsidian links for internal references.
