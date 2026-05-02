@@ -23,6 +23,7 @@ Optional:
 - `wiki/timeline.md`
 - `wiki/tasks/`
 - `WIKI_SCHEMA.md`
+- `llms.txt`
 - `skills/`
 - `.claude-plugin/`
 

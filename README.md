@@ -44,6 +44,18 @@ Agent prompt:
 Use the wiki as memory. For project context, check wiki/hot.md first, then wiki/index.md, then only the relevant canonical pages.
 ```
 
+## Agent-ready entrypoints
+
+Pagecraft ships one compact entrypoint per agent family:
+
+| Agent | Start file | Purpose |
+| --- | --- | --- |
+| Codex and AGENTS-aware tools | `AGENTS.md` | Routes to the canonical contract without duplicating rules. |
+| Claude Code | `CLAUDE.md` | Canonical write-time contract for mutations and verification. |
+| Generic LLM agents | `llms.txt` | Short discovery map with the highest-value files and commands. |
+
+`llms.txt` is intentionally small. It points agents to the real contracts; it does not create a second source of truth.
+
 ## Minimal vault shape
 
 Pagecraft is a contract package, not a pre-filled vault. A user vault should contain:
@@ -51,6 +63,7 @@ Pagecraft is a contract package, not a pre-filled vault. A user vault should con
 ```text
 vault/
 ├── WIKI_SCHEMA.md
+├── llms.txt
 ├── CLAUDE.md
 ├── AGENTS.md
 ├── rawinput/
@@ -89,6 +102,7 @@ The two source projects solve different problems:
 
 - `CLAUDE.md` — merged operating contract
 - `AGENTS.md` — compatibility shim for agents that bootstrap from AGENTS.md
+- `llms.txt` — compact discovery map for generic LLM agents
 - `WIKI_SCHEMA.md` — neutral discovery contract
 - `skills/ingest-wiki/SKILL.md` — upgraded skill with explicit preflight and verification
 - `scripts/init_vault.py` — initializes a clean Pagecraft-compatible vault
