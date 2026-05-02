@@ -55,6 +55,7 @@ Pagecraft ships one compact entrypoint per agent family:
 | Generic LLM agents | `llms.txt` | Short discovery map with the highest-value files and commands. |
 
 `llms.txt` is intentionally small. It points agents to the real contracts; it does not create a second source of truth.
+Vaults initialized with `scripts/init_vault.py` receive a vault-specific `llms.txt` that only links to files present in that vault.
 
 ## Minimal vault shape
 
