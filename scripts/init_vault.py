@@ -24,6 +24,37 @@ WIKI_DIRS = [
     "tech",
 ]
 
+VAULT_LLMS = """# Pagecraft Vault
+
+> This vault uses Pagecraft for LLM-active memory, durable knowledge, and careful agent-driven mutations.
+
+This file is an agent discovery entrypoint for the initialized vault. It is not the write-time source of truth.
+
+Use this order:
+1. Read `WIKI_SCHEMA.md` for neutral discovery and path conventions.
+2. Read `AGENTS.md` if your agent uses AGENTS instructions.
+3. Read `CLAUDE.md` for canonical write-time rules, mutation rules, and verification.
+4. Read `wiki/hot.md` first for active memory.
+5. Read `wiki/index.md`, then only the relevant canonical pages.
+
+Keep the write path simple:
+- `CLAUDE.md` is the canonical write-time contract.
+- `wiki/index.md` and `wiki/log.md` are mandatory after mutations.
+- `wiki/hot.md` is a non-canonical cache and must stay under 500 words.
+- `rawinput/` is staging; `raw/` is immutable after ingest.
+- Prefer updating or superseding an existing durable page over creating duplicates.
+
+## Agent Entry Points
+
+- [WIKI_SCHEMA.md](WIKI_SCHEMA.md): neutral vault schema, paths, and retrieval priority.
+- [AGENTS.md](AGENTS.md): compatibility shim for Codex and other AGENTS-aware agents.
+- [CLAUDE.md](CLAUDE.md): canonical write-time operating contract.
+- [skills/ingest-wiki/SKILL.md](skills/ingest-wiki/SKILL.md): ingest, direct-update, lint, and save-output workflow.
+- [wiki/hot.md](wiki/hot.md): active-memory cache; read first for project context.
+- [wiki/index.md](wiki/index.md): canonical retrieval map.
+- [wiki/log.md](wiki/log.md): mutation history.
+"""
+
 
 def write_if_missing(path: Path, content: str) -> None:
     if path.exists():
@@ -57,7 +88,7 @@ def init_vault(target: Path, with_sample: bool) -> None:
     target.mkdir(parents=True, exist_ok=True)
 
     copy_file(ROOT / "WIKI_SCHEMA.md", target / "WIKI_SCHEMA.md")
-    copy_file(ROOT / "llms.txt", target / "llms.txt")
+    write_if_missing(target / "llms.txt", VAULT_LLMS)
     copy_file(ROOT / "CLAUDE.md", target / "CLAUDE.md")
     copy_file(ROOT / "AGENTS.md", target / "AGENTS.md")
     copy_file(
