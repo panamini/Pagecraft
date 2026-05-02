@@ -12,6 +12,7 @@ required_paths = [
     ROOT / "WIKI_SCHEMA.md",
     ROOT / "CLAUDE.md",
     ROOT / "EXAMPLES.md",
+    ROOT / "scripts" / "init_vault.py",
     ROOT / "skills" / "ingest-wiki" / "SKILL.md",
     ROOT / ".claude-plugin" / "plugin.json",
     ROOT / ".claude-plugin" / "marketplace.json",

@@ -8,10 +8,12 @@
 - `AGENTS.md` compatibility shim for agents that bootstrap from `AGENTS.md`.
 - `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` files expected by the validator.
 - README agent prompt for using the wiki as memory.
+- `scripts/init_vault.py` to initialize a Pagecraft-compatible vault and optional sample source.
 
 ### Changed
 - Updated `WIKI_SCHEMA.md`, `CLAUDE.md`, and `skills/ingest-wiki/SKILL.md` to read `wiki/hot.md` before broader wiki retrieval.
 - Mutation verification now includes updating `wiki/hot.md` after persistent wiki changes.
+- README now documents the initialization command and smoke-test flow.
 
 ### Not changed
 - `CLAUDE.md` remains the write-time source of truth.

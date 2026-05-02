@@ -15,10 +15,28 @@ Pagecraft keeps the twoweeks control plane, adds the Karpathy behavior shim, and
 
 When installing Pagecraft into a vault:
 
-1. Read `WIKI_SCHEMA.md` for neutral discovery.
-2. Read `AGENTS.md` or `CLAUDE.md` for write-time mutation and verification rules.
-3. For project context, read `wiki/hot.md` first, then `wiki/index.md`, then only the relevant canonical pages.
-4. Keep `wiki/hot.md` under 500 words. It is a cache, not a journal.
+1. Initialize a vault:
+
+   ```bash
+   python3 scripts/init_vault.py /path/to/vault
+   ```
+
+2. Read `WIKI_SCHEMA.md` for neutral discovery.
+3. Read `AGENTS.md` or `CLAUDE.md` for write-time mutation and verification rules.
+4. For project context, read `wiki/hot.md` first, then `wiki/index.md`, then only the relevant canonical pages.
+5. Keep `wiki/hot.md` under 500 words. It is a cache, not a journal.
+
+Smoke-test a new vault with a staged markdown file:
+
+```bash
+python3 scripts/init_vault.py /tmp/pagecraft-vault --with-sample
+```
+
+Then ask your agent:
+
+```text
+Use the ingest-wiki skill. Ingest rawinput/pagecraft-sample.md into this vault.
+```
 
 Agent prompt:
 
@@ -73,6 +91,7 @@ The two source projects solve different problems:
 - `AGENTS.md` — compatibility shim for agents that bootstrap from AGENTS.md
 - `WIKI_SCHEMA.md` — neutral discovery contract
 - `skills/ingest-wiki/SKILL.md` — upgraded skill with explicit preflight and verification
+- `scripts/init_vault.py` — initializes a clean Pagecraft-compatible vault
 - `EXAMPLES.md` — hybrid examples adapted to wiki mutations
 - `.claude-plugin/` — plugin metadata for portability
 - `audit/` — benchmark matrix, audit report, validation output
